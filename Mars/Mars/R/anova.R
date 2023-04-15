@@ -10,7 +10,7 @@
 #'
 #' @examples
 #' fit.mars <- mars(wage ~ age + education, data=ISLR::Wage, control = mars.control(Mmax=10))
-#' anova.mars(fit.mars)
+#' anova.(fit.mars)
 #'
 #' @rdname anova.mars
 #' @export anova.mars
