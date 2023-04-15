@@ -5,6 +5,9 @@
 #' @param object an object of class 'mars'.
 #' @param ... other arguments -- currently not used.
 #'
+#' @return An object of class 'anova' inheriting from class 'data.frame'.
+#' @export
+#'
 #' @examples
 #' fit.mars <- mars(wage ~ age + education, data=ISLR::Wage, control = mars.control(Mmax=10))
 #' anova.mars(fit.mars)
