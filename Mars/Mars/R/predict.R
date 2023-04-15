@@ -1,13 +1,19 @@
-#' Prediction Function for MARS Model
+#' Predict method for MARS
 #'
-#' @param object mars object
-#' @param newdata data frame or matrix with new data
-#' @param ... further arguments to be passed to or from methods.
+#' @description Predicted values of fitted mars model.
+#' 
+#' @usage predict(object, newdata)
 #'
-#' @return predicted values of fitted model
+#' @param object an object of class 'mars'.
+#' @param newdata an optional data frame in which to look for variables with which to predict.
+#'
+#' @return predicted a vector of predictions.
+#'
 #' @examples
+#' @import stats
+#' @import ISLR
 #' fit.mars <- mars(wage ~ age + education, data=ISLR::Wage, control = mars.control(Mmax=10))
-#' predict.mars(fit.mars)
+#' predict(fit.mars)
 #' @rdname predict.mars
 #' @export predict.mars
 #' @export
