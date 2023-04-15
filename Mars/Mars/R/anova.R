@@ -14,7 +14,7 @@
 #' @import stats
 #' @import ISLR
 #' fit.mars <- mars(wage ~ age + education, data=ISLR::Wage, control = mars.control(Mmax=10))
-#' anova(fit.mars)
+#' anova.mars(fit.mars)
 #'
 #' @rdname anova.mars
 #' @export anova.mars
