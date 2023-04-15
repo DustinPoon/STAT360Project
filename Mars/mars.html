@@ -1,0 +1,128 @@
+<!DOCTYPE html><html><head><title>R: Multivariate Adaptive Regression Splines (MARS)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+
+<table style="width: 100%;"><tr><td>mars</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Multivariate Adaptive Regression Splines (MARS)</h2>
+
+<h3>Description</h3>
+
+<p>Fit Friedman's Multivariate Adaptive Regression Splines (MARS) model.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>mars(formula, data, control) #for generating a mars object
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;"><td><code>formula</code></td>
+<td>
+<p>an R formula specifying the dependent and independent variables in the model. The formula should take the form y ~ x1 + x2 + ..., where y is the response variable and x1, x2, etc. are the predictor variables.</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>data</code></td>
+<td>
+<p>a data frame containing the variables in the formula.</p>
+</td></tr>
+<tr style="vertical-align: top;"><td><code>control</code></td>
+<td>
+<p>an object of class mars.control that specifies parameters used in the model fitting procedure. By default, the control object is constructed using <code>mars.control()</code>, with default values for the parameters.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>The function first extracts the response variable and the predictor variables
+from the data frame using the formula and <code style="white-space: pre;">&#8288;model.frame() function&#8288;</code>. Then, it performs
+forward stepwise regression on the data using the <code>fwd_stepwise()</code> function, followed by
+backward stepwise regression on the selected terms using the <code>bwd_stepwise()</code> function.
+The resulting basis functions and basis matrix are stored in the bwd object. Finally, a
+linear model is fit to the data using the <code>lm()</code> function, with the basis matrix and response
+variable as inputs. The resulting object is returned as a list with class 'mars'.
+</p>
+
+
+<h3>Value</h3>
+
+<p>an object of class 'mars' which will be used for plot, predict, etc.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Group DJT: Dustin Poon, James Lee, Tyler Oh
+</p>
+
+
+<h3>References</h3>
+
+<p>Friedman, J. H. (1991). Multivariate adaptive regression splines. The Annals of Statistics, 19(1), 1-67.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>print.mars()</code>
+</p>
+<p><code>summary.mars()</code>
+</p>
+<p><code>predict.mars()</code>
+</p>
+<p><code>plot.mars()</code>
+</p>
+<p><code>anova.mars()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>#example 1
+# mars() with ISLR::Wage dataset
+fit.mars &lt;- mars(wage ~ age + education, data=ISLR::Wage, control = mars.control(Mmax=10))
+# Show results
+fit.mars
+
+#example 2
+# create your own dataset
+n &lt;- 1000
+x1 &lt;- rnorm(n)
+x2 &lt;- rnorm(n)
+x3 &lt;- rnorm(n)
+y &lt;- 2*x1 + 3*x2 + 4*x3 + rnorm(n)
+df &lt;- data.frame(x1=x1,x2=x2,x3=x3,y=y)
+
+# fit a MARS model
+fit &lt;- mars(y ~ x1 + x2 + x3, data=df)
+#show results
+fit
+
+#example 3
+# another example using data(iris)
+fit.iris &lt;- mars(Sepal.Length ~., data=iris, control = mars.control(Mmax=10))
+# Show results
+fit.iris
+
+
+</code></pre>
+
+
+</div>
+</body></html>
