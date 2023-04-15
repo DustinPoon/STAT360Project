@@ -1,0 +1,25 @@
+Package: Mars
+Title: Multivariate adaptive regression spline (MARS)
+Version: 0.1.0
+Authors@R: 
+    person("Dustin", "Poon", ,"tspoon@sfu.ca", role = c("aut","cre"))
+    person("James", "Lee", ,"jjl49@sfu.ca", role = c("aut","cre"))
+    person("Tyler", "Oh", ,"tylero@sfu.ca", role = c("aut","cre"))
+Description: This package is an implementation of MARS method presented by Dr. Jerome H. Friedman in 1991 in his paper with the same name.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    ISLR,
+    stats
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0), dplyr
+VignetteIndexEntry: Introduction to My Package
+VignetteBuilder: knitr
+Vignette: Mars/vignettes/mars.Rmd
+VignetteEngine: knitr::rmarkdown
+Config/testthat/edition: 3
+LazyData: True

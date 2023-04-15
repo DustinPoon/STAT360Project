@@ -1,0 +1,73 @@
+---
+title: "Multivariate Adaptive Regression Splines (MARS)"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my_vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(Mars)
+```
+
+
+# Introduction
+
+#### The mars function in the mars package can be used to fit Friedman's Multivariate Adaptive Regression Splines (MARS) model. The mars function extracts the response variable and the predictor variables from the data frame using the formula and model.frame() function. Then, it performs forward stepwise regression on the data using the fwd_stepwise() function, followed by backward stepwise regression on the selected terms using the bwd_stepwise() function. The resulting basis functions and basis matrix are stored in the bwd object. Finally, a linear model is fit to the data using the lm() function, with the basis matrix and response variable as inputs. The resulting object is returned as a list with class 'mars'.
+
+
+# Usage
+
+```{r, eval=FALSE}
+mars(formula, data, control)
+```
+
+# Arguments
+- formula: an R formula specifying the dependent and independent variables in the model. The formula should take the form y ~ x1 + x2 + ..., where y is the response variable and x1, x2, etc. are the predictor variables.
+- data: a data frame containing the variables in the formula.
+- control: an object of class mars.control that specifies parameters used in the model fitting procedure. By default, the control object is constructed using mars.control(), with default values for the parameters.
+
+## Examples
+
+### Example 1
+
+```{r}
+library(ISLR)
+fit.mars <- mars(wage ~ age + education, data=ISLR::Wage, control = mars.control(Mmax=10))
+fit.mars
+```
+
+
+### Example 2
+
+```{r}
+n <- 1000
+x1 <- rnorm(n)
+x2 <- rnorm(n)
+x3 <- rnorm(n)
+y <- 2*x1 + 3*x2 + 4*x3 + rnorm(n)
+df <- data.frame(x1=x1,x2=x2,x3=x3,y=y)
+
+fit <- mars(y ~ x1 + x2 + x3, data=df)
+fit
+```
+
+### Example 3
+
+```{r}
+fit.iris <- mars(Sepal.Length ~., data=iris, control = mars.control(Mmax=10))
+fit.iris
+
+```
+
+# References
+
+Friedman, J. H. (1991). Multivariate adaptive regression splines. The Annals of Statistics, 19(1), 1-67.
