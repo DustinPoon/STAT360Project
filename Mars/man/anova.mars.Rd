@@ -2,9 +2,10 @@
 % Please edit documentation in R/anova.R
 \name{anova.mars}
 \alias{anova.mars}
+\alias{anova}
 \title{Anova for MARS}
 \usage{
-\method{anova}{mars}(object, ...)
+anova.mars(object = marsobject, ...)
 }
 \arguments{
 \item{object}{An object of class mars.}

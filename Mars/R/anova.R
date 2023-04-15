@@ -4,6 +4,8 @@
 #' @param ... Other arguments.
 #' @return The anova table of the fitted MARS model.
 #'
+#' @aliases anova
+#' @usage anova.mars(object = marsobject, ...)
 #'
 #' @examples
 #' fit.mars <- mars(wage ~ age + education, data=ISLR::Wage, control = mars.control(Mmax=10))
