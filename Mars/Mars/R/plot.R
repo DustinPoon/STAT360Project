@@ -1,6 +1,8 @@
-#' Plot a MARS Model
+#' Plot method for MARS
 #'
-#' @param x MARS model object
+#' @description Plot of the fitted basis functions.
+#'
+#' @param x an object of class 'mars'.
 #' @param ... further arguments passed to or from other methods
 #'
 #' @return 2D plot for single variable basis function
@@ -8,8 +10,10 @@
 #' @importFrom graphics par persp plot
 #' @importFrom stats model.frame model.matrix terms
 #' @examples
+#' @import stats
+#' @import ISLR
 #' fit.mars <- mars(wage ~ age + education, data=ISLR::Wage, control = mars.control(Mmax=10))
-#' plot.mars(fit.mars)
+#' plot(fit.mars)
 #' @rdname plot.mars
 #' @export plot.mars
 #' @export
