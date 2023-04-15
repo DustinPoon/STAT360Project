@@ -151,13 +151,15 @@ validate_mars.control <- function(control) {
   control
 }
 
-#' mars.control
+#' Constructor for 'mars.control' objects
 #'
-#' @param Mmax an integer representing maximum number of basis functions allowed by the user, default value is 2
-#' @param d smoothing parameter
-#' @param trace logical value. if user wants to see what is happening in the mars function, then set it to TRUE. Default value is FALSE
+#' @description A constructor for 'mars.control' object, that specifies parameters used in the model fitting procedure.
 #'
-#' @return an empty list
+#' @param Mmax Maximum number of basis functions allowed, Mmax needs to be an even number. Default value is 2.
+#' @param d Smoothing parameter.
+#' @param trace Logical value. If user wants to see what is happening in the mars function, then set it to TRUE. Default value is FALSE.
+#'
+#' @return Returns a list with class of 'mars.control', containing three variables: Mmax, d and trace.
 #' @export
 #'
 #' @examples mc <- mars.control(Mmax=10)
