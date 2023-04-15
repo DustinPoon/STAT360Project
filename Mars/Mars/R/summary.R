@@ -1,13 +1,18 @@
-#' Summary Function for MARS Model
+#' Summary method for MARS
 #'
-#' @param object a mars object
-#' @param ... further arguments passed to or from other methods
+#' @description summary method for class 'mars'.
+#' 
+#' @usage summary(object,...)
 #'
-#' @return The function return the summary of the input MARS object as well as
-#' a generic summary function with the MARS object
+#' @param object an object of class 'mars'.
+#' @param ... other arguments -- currently not used.
+#'
+#' @return Print the summary of the mars object and generic function with mars object.
 #' @examples
+#' @import stats
+#' @import ISLR
 #' fit.mars <- mars(wage ~ age + education, data=ISLR::Wage, control = mars.control(Mmax=10))
-#' summary.mars(fit.mars)
+#' summary(fit.mars)
 #' @rdname summary.mars
 #' @export summary.mars
 #' @export
