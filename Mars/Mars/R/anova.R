@@ -2,6 +2,8 @@
 #'
 #' @description Compute an analysis of variance table for the fitted MARS model.
 #'
+#' @usage anova(object,...)
+#'
 #' @param object an object of class 'mars'.
 #' @param ... other arguments -- currently not used.
 #'
@@ -9,8 +11,10 @@
 #' @export
 #'
 #' @examples
+#' @import stats
+#' @import ISLR
 #' fit.mars <- mars(wage ~ age + education, data=ISLR::Wage, control = mars.control(Mmax=10))
-#' anova.(fit.mars)
+#' anova(fit.mars)
 #'
 #' @rdname anova.mars
 #' @export anova.mars
