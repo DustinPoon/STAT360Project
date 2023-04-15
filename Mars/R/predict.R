@@ -1,8 +1,12 @@
 #' Prediction Function for MARS Model
 #'
+#' @description Predicted values of fitted mars model.
+#'
 #' @param object MARS model object (input mars object)
 #' @param newdata data frame or matrix with new data
 #' @param ... further arguments to be passed to or from methods.
+#'
+#' @usage \method{predict}{mars}(object, newdata, ...)
 #'
 #' @return predicted values of fitted model
 #' @examples

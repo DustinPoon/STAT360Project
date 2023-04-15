@@ -1,7 +1,11 @@
 #' Plot a MARS Model
 #'
+#' @description Plot of the fitted basis functions.
+#'
 #' @param x MARS model object (input mars object)
 #' @param ... further arguments passed to or from other methods
+#'
+#' @usage \method{plot}{mars}(x, ...)
 #'
 #' @return 2D plot for single variable basis function
 #'         3D plot for double variable basis function

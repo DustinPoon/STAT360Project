@@ -1,11 +1,13 @@
 #' Anova for MARS
 #'
+#' @description Compute an analysis of variance table for the fitted MARS model.
+#'
 #' @param object An object of class mars.
 #' @param ... Other arguments.
 #' @return The anova table of the fitted MARS model.
 #'
 #' @aliases anova
-#' @usage anova.mars(object = marsobject, ...)
+#' @usage \method{anova}{mars}(object, ...)
 #'
 #' @examples
 #' fit.mars <- mars(wage ~ age + education, data=ISLR::Wage, control = mars.control(Mmax=10))

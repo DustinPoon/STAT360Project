@@ -1,7 +1,11 @@
 #' Summary Function for MARS Model
 #'
+#' @description summary method for class 'mars'.
+#'
 #' @param object  MARS model object (input mars object)
 #' @param ... further arguments passed to or from other methods
+#'
+#' @usage \method{summary}{mars}(object,...)
 #'
 #' @return The function return the summary of the input MARS object as well as
 #' a generic summary function with the MARS object

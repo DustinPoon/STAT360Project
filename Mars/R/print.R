@@ -2,6 +2,8 @@
 #'
 #' @description Print coefficients of the fitted mars model.
 #'
+#' @usage \method{print}{mars}(x, ...)
+#'
 #' @param x MARS model object (input mars object)
 #' @param ... further arguments passed to or from other methods.
 #'
