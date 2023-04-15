@@ -2,18 +2,20 @@
 % Please edit documentation in R/anova.R
 \name{anova.mars}
 \alias{anova.mars}
-\title{Anova for MARS}
+\title{Anova method for MARS}
 \usage{
 \method{anova}{mars}(object, ...)
 }
 \arguments{
-\item{object}{An object of class mars.}
+\item{object}{an object of class 'mars'.}
 
-\item{...}{Other arguments.}
-}
-\value{
-The anova table of the fitted MARS model.
+\item{...}{other arguments -- currently not used.}
 }
 \description{
-Anova for MARS
+Compute an analysis of variance table for the fitted MARS model.
+}
+\examples{
+fit.mars <- mars(wage ~ age + education, data=ISLR::Wage, control = mars.control(Mmax=10))
+anova.mars(fit.mars)
+
 }
