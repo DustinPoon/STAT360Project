@@ -104,6 +104,8 @@ Jerome H. Friedman, The Annals of Statistics, Mar., 1991, Vol. 19, No. 1 (Mar., 
   
   *summary.mars*    for more detailed summaries of mars object.
 
+For more detailed explanations, please type ?function_name in your R or Rstudio console
+
 ## Setup
 ```{r setup}
 library(Mars)
