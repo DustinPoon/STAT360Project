@@ -1,10 +1,10 @@
 ---
 title: "Multivariate Adaptive Regression Splines (MARS)"
 output:
+  pdf_document: default
+  word_document: default
   html_document:
     df_print: paged
-  word_document: default
-  pdf_document: default
 vignette: "%\\VignetteIndexEntry{Mars} %\\VignetteEngine{knitr::rmarkdown} %\\VignetteEncoding{UTF-8}\n"
 ---
 
@@ -136,6 +136,7 @@ anova.mars(fit.Wage)
 plot.mars(fit.Wage)
 ```
 
+\newpage
 ### iris Dataset
 
 ```{r, eval=FALSE}
