@@ -13,11 +13,9 @@
 #'  linear model is fit to the data using the `lm()` function, with the basis matrix and response
 #'  variable as inputs. The resulting object is returned as a list with class 'mars'.
 #'
-#'
 #' @param formula an R formula specifying the dependent and independent variables in the model. The formula should take the form y ~ x1 + x2 + ..., where y is the response variable and x1, x2, etc. are the predictor variables.
 #' @param data a data frame containing the variables in the formula.
 #' @param control an object of class mars.control that specifies parameters used in the model fitting procedure. By default, the control object is constructed using `mars.control()`, with default values for the parameters.
-#'
 #'
 #' @return an object of class 'mars' which will be used for plot, predict, etc.
 #' @export
