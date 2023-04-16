@@ -1,6 +1,6 @@
 ---
 title: "Multivariate Adaptive Regression Splines (MARS)"
-output: rmarkdown::html_vignette
+output: pdf_document
 vignette: >
   %\VignetteIndexEntry{Mars}
   %\VignetteEngine{knitr::rmarkdown}
@@ -67,7 +67,7 @@ The GCV criterion can be calculated using the following formula:
   RSS×(N/(N - C'(M))^2)
 N is the number of rows in the dataset.
 M is one less than the number of coefficients in the fitted model.
-C’(M) is the sum of the hatvalues from the fitted model and the smoothing parameter d times M, where d is typically set to 3, according to
+C’(M) is the sum of the hat-values from the fitted model and the smoothing parameter d times M, where d is typically set to 3, according to
 Friedman.
 
 ## Value
@@ -110,7 +110,7 @@ options(max.print=100)
 #### iris: The dataset from library(ISLR)
 #### CarPrice: This dataset is extracted from https://www.kaggle.com/datasets/hellbuoy/car-price-prediction
 ```{r}
-CarPrice <- read.csv("/Users/tyler/Mars/vignettes/CarPrice_Assignment.csv")
+CarPrice <- read.csv("/Users/tyler/STAT360Project/Mars/data-raw/CarPrice_Assignment.csv")
 ```
 
 ### Control

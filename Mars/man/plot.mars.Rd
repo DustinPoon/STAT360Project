@@ -16,7 +16,7 @@
 3D plot for double variable basis function
 }
 \description{
-Plot a MARS Model
+Plot of the fitted basis functions.
 }
 \examples{
 fit.mars <- mars(wage ~ age + education, data=ISLR::Wage, control = mars.control(Mmax=10))

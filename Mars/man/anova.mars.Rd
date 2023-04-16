@@ -5,7 +5,7 @@
 \alias{anova}
 \title{Anova for MARS}
 \usage{
-anova.mars(object = marsobject, ...)
+\method{anova}{mars}(object, ...)
 }
 \arguments{
 \item{object}{An object of class mars.}
@@ -16,7 +16,7 @@ anova.mars(object = marsobject, ...)
 The anova table of the fitted MARS model.
 }
 \description{
-Anova for MARS
+Compute an analysis of variance table for the fitted MARS model.
 }
 \examples{
 fit.mars <- mars(wage ~ age + education, data=ISLR::Wage, control = mars.control(Mmax=10))

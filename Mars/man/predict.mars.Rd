@@ -17,7 +17,7 @@
 predicted values of fitted model
 }
 \description{
-Prediction Function for MARS Model
+Predicted values of fitted mars model.
 }
 \examples{
 fit.mars <- mars(wage ~ age + education, data=ISLR::Wage, control = mars.control(Mmax=10))

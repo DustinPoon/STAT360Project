@@ -4,7 +4,7 @@
 \alias{summary.mars}
 \title{Summary Function for MARS Model}
 \usage{
-\method{summary}{mars}(object, ...)
+\method{summary}{mars}(object,...)
 }
 \arguments{
 \item{object}{MARS model object (input mars object)}
@@ -16,7 +16,7 @@ The function return the summary of the input MARS object as well as
 a generic summary function with the MARS object
 }
 \description{
-Summary Function for MARS Model
+summary method for class 'mars'.
 }
 \examples{
 fit.mars <- mars(wage ~ age + education, data=ISLR::Wage, control = mars.control(Mmax=10))
