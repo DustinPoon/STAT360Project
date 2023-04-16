@@ -1,10 +1,11 @@
 ---
 title: "Multivariate Adaptive Regression Splines (MARS)"
-output: pdf_document
-vignette: >
-  %\VignetteIndexEntry{Mars}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output:
+  html_document:
+    df_print: paged
+  word_document: default
+  pdf_document: default
+vignette: "%\\VignetteIndexEntry{Mars} %\\VignetteEngine{knitr::rmarkdown} %\\VignetteEncoding{UTF-8}\n"
 ---
 
 ```{r, include = FALSE}
@@ -14,25 +15,19 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Github Page
+# Github Page
 https://github.com/DustinPoon/STAT360Project
 
-## Description
+# Description
 
 Using methods from Friedman's paper "Multivariate Adaptive Regression Splines" to construct a regression model.
 
-## Usage
-
+# Usage
 ```{r eval=FALSE}
 mars(formula, data, control = NULL)
-anova.mars(object, ...)
-plot.mars(x, ...)
-print.mars(x, ...)
-predict.mars(object, newdata, ...)
-summary.mars(object, ...)
 ```
 
-## Arguments
+# Arguments
 
   *formula*   an R formula.
   
@@ -40,32 +35,34 @@ summary.mars(object, ...)
   
   *control*   an object of class 'mars.control'.
 
-## Details
+# Details
 
 Jerome H. Friedman introduced a type of regression analysis called Multivariate Adaptive Regression Spline (MARS). MARS is a non-parametric regression technique that automatically models nonlinearities and interactions between variables. MARS begins by recursively partitioning the data into two subsets and fitting a linear regression model to the regions. The predictor variable is where the subsetting occurs and is chosen by the forward stepwise method, which selects the best predictor variable. Again, repeated for each subset. A new predictor variable is added to the model, using the residuals from the two models. The process is repeated until the Mmax of basis functions is reached. The resulting model consists of the selected basis functions and their formulas, the names of the predictor variables, and the fitted linear model object.
 
-### Key Aspects in Mars Algorithm
+\newpage
 
-#### Forward Step-wise
+## Key Aspects in Mars Algorithm
+
+### Forward Step-wise
 The forward step-wise algorithm recursively partitions the predictor variable space into sub-regions by adding
 pairs of basis functions, each representing a sub-region. The algorithm selects the optimal basis function to split
 on by iterating over four loops, with each iteration selecting a variable and split point based on the GCV criterion.
 The basis functions are recorded in a list called Bfuncs and a matrix called B.
 
-#### Backward Step-wise
+### Backward Step-wise
 The backward step-wise algorithm removes terms one by one, selecting the least effective term at each step until
 it finds the best sub-model. Model subsets are compared using the GCV criterion, implemented using two for
 loops. The outer loop iterates over all possible model sizes, while the inner loop iterates over all model terms in
 the current model and tries removing one basis function at a time. The final model is selected based on the
 lowest observed lack of fit value using the GCV criterion.
 
-#### Hinge Function
+### Hinge Function
 MARS models use hinge functions, which are constructed using a variable x and a split-point (knot) “a.” The
 hinge function takes the form max(0, x - a) or max(0, a - x) and can be used to partition data into disjoint regions.
 These regions can be treated independently and the hinge functions can be multiplied together to form non-linear
 functions.
 
-#### Generalized Cross Validation (GCV) Criterion
+### Generalized Cross Validation (GCV) Criterion
 When selecting models in the MARS algorithm, the Generalized Cross Validation (GCV) criterion is used to
 measure “lack of fit” (LOF) instead of the Residual Sum of Squares (RSS). The RSS tends to favor larger models
 because it decreases as we add predictors. Cross-Validation is a better approach but can be time-consuming,
@@ -78,19 +75,19 @@ M is one less than the number of coefficients in the fitted model.
 C’(M) is the sum of the hat-values from the fitted model and the smoothing parameter d times M, where d is typically set to 3, according to
 Friedman.
 
-## Value
+# Value
 
 An S3 model of class 'mars'.
 
-## Author(s)
+# Author(s)
 
 Group DJT: Dustin Poon, James Lee, Tyler Oh
 
-## References
+# References
 
 Jerome H. Friedman, The Annals of Statistics, Mar., 1991, Vol. 19, No. 1 (Mar., 1991), pp. 1-67.
 
-## See Also
+# See Also
 
   *mars.control*    for constructing control object.
   
@@ -104,108 +101,65 @@ Jerome H. Friedman, The Annals of Statistics, Mar., 1991, Vol. 19, No. 1 (Mar., 
   
   *summary.mars*    for more detailed summaries of mars object.
 
-For more detailed explanations, please type ?function_name in your R or Rstudio console
+*For more detailed explanations, please type ?function_name in your R or Rstudio console. (i.e., ?mars)*
 
-## Setup
+# Examples
+
+## Data
+
+### Wage: R built-in dataset
+### iris: The dataset from library(ISLR)
+### CarPrice: This dataset is extracted from https://www.kaggle.com/datasets/hellbuoy/car-price-prediction{.underline}
+
+### Setup
+
 ```{r setup}
 library(Mars)
-options(max.print=100)
-```
-
-## Examples
-
-### Data
-
-#### Wage: R built-in dataset
-#### iris: The dataset from library(ISLR)
-#### CarPrice: This dataset is extracted from https://www.kaggle.com/datasets/hellbuoy/car-price-prediction
-```{r}
 CarPrice <- read.csv("/Users/tyler/Mars/vignettes/CarPrice_Assignment.csv")
 ```
 
 ### Control
+
 ```{r}
 mc <- mars.control(Mmax=10)
 ```
 
-### Example with Wage Dataset
-```{r}
+### Wage data
+
+```{r, eval=FALSE}
 fit.Wage <- mars(wage ~ age + education, ISLR::Wage, mc)
-```
-
-```{r}
 print.mars(fit.Wage)
-```
-
-```{r}
+summary.mars(fit.Wage)
 predict.mars(fit.Wage, newdata = data.frame(age=ISLR::Wage$age,
                                             education = ISLR::Wage$education))
-```
-
-```{r}
-summary.mars(fit.Wage)
-```
-
-```{r, fig.width=5, fig.heigth=5}
+anova.mars(fit.Wage)
 plot.mars(fit.Wage)
 ```
 
-```{r}
-anova.mars(fit.Wage)
-```
+### iris Dataset
 
-### Example with Iris Dataset
-```{r}
+```{r, eval=FALSE}
 fit.iris <- mars(Sepal.Length ~., iris, mc)
-```
-
-```{r}
 print.mars(fit.iris)
-```
-
-```{r}
+summary.mars(fit.iris)
 predict.mars(fit.iris, newdata = data.frame(sepal.width = iris$Sepal.Width,
                                             petal.length = iris$Petal.Length,
                                             petal.width = iris$Petal.Width,
                                             Species = iris$Species))
-```
-
-```{r}
-summary.mars(fit.iris)
-```
-
-```{r, fig.width=5, fig.heigth=5}
+anova.mars(fit.iris)
 plot.mars(fit.iris)
 ```
 
-```{r}
-anova.mars(fit.iris)
-```
+### CarPrice dataset
 
-### Example with CarPrice dataset
-```{r}
+```{r, eval=FALSE}
 fit.CarPrice <- mars(price ~ citympg + highwaympg + horsepower + fueltype, CarPrice, mc)
-```
-
-```{r}
 print.mars(fit.CarPrice)
-```
-
-```{r}
+summary.mars(fit.CarPrice)
 predict.mars(fit.CarPrice, newdata = data.frame(citympg = CarPrice$citympg,
                                                 highwaympg = CarPrice$highwaympg,
                                                 horsepower = CarPrice$highwaympg,
                                                 fueltype = CarPrice$highwaympg))
-```
-
-```{r}
-summary.mars(fit.CarPrice)
-```
-
-```{r, fig.width=5, fig.heigth=5}
-plot.mars(fit.CarPrice)
-```
-
-```{r}
 anova.mars(fit.CarPrice)
+plot.mars(fit.CarPrice)
 ```
