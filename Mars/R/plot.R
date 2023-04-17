@@ -47,6 +47,7 @@ plot.mars <- function(x, ...){
   # Exit handler to reset pars
   on.exit(graphics::par(opar))
 
+  # Loop for single variable basis function
   for(i in B_single){
     var_ind <- Bf[[i]][1,"v"]
 
@@ -59,6 +60,7 @@ plot.mars <- function(x, ...){
          main = paste0(i-1, ". ", names(x$coefficients[i])))
     }
 
+  # Loop for double variable basis function
   for(i in B_double){
     var1_ind <- Bf[[i]][1,"v"]
     var2_ind <- Bf[[i]][2,"v"]
