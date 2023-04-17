@@ -72,7 +72,8 @@ mars <- function(formula,data,control=mars.control()) {
   control <- validate_mars.control(control)
   fwd <- fwd_stepwise(y,x,control)
   bwd <- bwd_stepwise(fwd,control)
-  fit <- lm(y~.-1,data=data.frame(y=y,bwd$B)) # notice -1 added
+  # Fitting model with bwd and dropping intercept to overcome colinearity due to presence of two intercepts
+  fit <- lm(y~.-1,data=data.frame(y=y,bwd$B))
   out <- c(list(call=cc,formula=formula,y=y,B=bwd$B,Bfuncs=bwd$Bfuncs,
                 x_names=x_names),fit)
   class(out) <- c("mars",class(fit))
@@ -81,12 +82,12 @@ mars <- function(formula,data,control=mars.control()) {
 
 #------------------- fwd_stepwise ----------------------
 fwd_stepwise <- function(y,x,mc=mars.control()){
-  # Initial N n B Bfuncs
-  N <- length(y)
-  n <- ncol(x)
+  # Initializing
+  N <- length(y) # Sample Size
+  n <- ncol(x)   # Number of predictors
   B <- init_B(N, mc$Mmax)
   Bfuncs <- vector(mode = "list",length = mc$Mmax+1)
-  # M loop
+  # Forward Selection
   for(i in 1:(mc$Mmax/2)) {
     M <- 2*i-1
     lof_best <- Inf
@@ -105,8 +106,8 @@ fwd_stepwise <- function(y,x,mc=mars.control()){
             lof_best <- lof
             split_best <- c(m=m,v=v,t=t)
           }#lof
-        }
-      }
+        }# end loop over splits
+      }# end loop over variables
     }#m loop
     m <- split_best['m']; v <- split_best['v']; t <- split_best['t']
     #cat("best split on variable",v, "at", t, "\n")
