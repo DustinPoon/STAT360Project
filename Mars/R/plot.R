@@ -38,7 +38,7 @@ plot.mars <- function(x, ...){
 
   Bf<-x$Bfuncs
 
-  # Finding the margins of x and y for plots
+  # Find indices of basis functions with single and double variables
   B_single<-which(sapply(Bf,function(x) NROW(x)==1))
   B_double<-which(sapply(Bf,function(x) NROW(x)==2))
   nn<-ceiling(sqrt(length(B_single)+length(B_double)))
@@ -72,6 +72,7 @@ plot.mars <- function(x, ...){
       h(x, Bf[[i]][1,"s"], Bf[[i]][1, "t"]) * h(y, Bf[[i]][1,"s"], Bf[[i]][1,"t"])}
 
     z_coord <- outer(x_coord, y_coord, FUN = basis_fun)
+    # Plot 3d graph
     persp(x_coord,y_coord,z_coord,
           xlab=var1_name,ylab=var2_name,zlab="",
           main=paste0(i-1, ". ", var1_name,":",var2_name, " (", names(x$coefficients[i]),
